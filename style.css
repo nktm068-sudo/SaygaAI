@@ -1,0 +1,83 @@
+body {
+    background: #000510;
+    color: #00d2ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.window {
+    background: rgba(0, 15, 40, 0.9);
+    border: 2px solid #00d2ff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+    text-align: center;
+    width: 350px;
+}
+
+.logo {
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #00d2ff;
+    margin-bottom: 30px;
+}
+
+input {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00d2ff;
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.btn-main {
+    background: #00d2ff;
+    color: #000;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.divider {
+    margin: 20px 0;
+    font-size: 10px;
+    color: #555;
+}
+
+.social-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-git { background: #24292e; color: white; border: none; padding: 10px; width: 50%; border-radius: 5px; cursor: pointer; }
+.btn-goog { background: #fff; color: #444; border: none; padding: 10px; width: 50%; border-radius: 5px; cursor: pointer; }
+
+.status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+.btn-logout {
+    background: none;
+    border: 1px solid #ff4757;
+    color: #ff4757;
+    margin-top: 30px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
