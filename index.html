@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueCloud | ADMINX SYSTEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkUser()">
+
+    <!-- ЭКРАН ВХОДА -->
+    <div id="auth-ui" class="window">
+        <h1 class="logo">🌀 BLUECLOUD</h1>
+        <div class="auth-box">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="pass" placeholder="Пароль">
+            <button onclick="handleLogin()" class="btn-main">ВОЙТИ / СОЗДАТЬ</button>
+            
+            <div class="divider">ИЛИ ЧЕРЕЗ</div>
+            
+            <div class="social-btns">
+                <button onclick="loginWithGitHub()" class="btn-git">GITHUB</button>
+                <button onclick="loginWithGoogle()" class="btn-goog">GOOGLE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭКРАН ОБЛАКА -->
+    <div id="cloud-ui" class="window" style="display:none;">
+        <h2 class="logo">☁️ ВАШ СКЛАД</h2>
+        <p id="user-display" style="font-size:12px; margin-bottom:20px;"></p>
+        
+        <div class="upload-area">
+            <input type="file" id="cloud-file">
+            <button onclick="uploadFile()" class="btn-main">ЗАГРУЗИТЬ</button>
+        </div>
+        
+        <div id="status" class="status"></div>
+        
+        <button onclick="logout()" class="btn-logout">ВЫЙТИ ИЗ СИСТЕМЫ</button>
+    </div>
+
+    <!-- ПОДКЛЮЧАЕМ ДВИЖОК -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
