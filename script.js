@@ -1,15 +1,14 @@
-// Части секретного значения
+// Секретные части
 const p2 = "FKqdkWXOjETtPsZkGE";
 const p3 = "gTPrTcZPSPYvDvRk";
 
-// Собираем данные через LDFLDF
 function get_LDFLDF() {
     const s1 = "h", s2 = "f", s3 = "_";
     return s1 + s2 + s3 + p2 + p3;
 }
 
 const CURRENT_LDFLDF = get_LDFLDF();
-// Ссылка заменена на ADDRESS
+// Адрес БЕЗ лишних знаков на конце
 const ADDRESS = "https://api-inference.huggingface.co/models/IlyaGusev/saiga_llama_3_8b";
 
 async function sendMessage() {
@@ -23,44 +22,48 @@ async function sendMessage() {
     const loadingId = addMessage("Сайга печатает...", 'bot');
     scrollToBottom();
 
-    // Формат сообщения для модели
+    // Специальный шаблон для Ламы 3
     const msg_data = `<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n${text}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n`;
 
     try {
         const response = await fetch(ADDRESS, {
             method: "POST",
+            mode: 'cors', // Явно разрешаем CORS
             headers: { 
                 "Authorization": `Bearer ${CURRENT_LDFLDF}`, 
                 "Content-Type": "application/json" 
             },
             body: JSON.stringify({ 
                 inputs: msg_data, 
-                parameters: { max_new_tokens: 500, temperature: 0.7 } 
+                parameters: { 
+                    max_new_tokens: 500, 
+                    temperature: 0.7,
+                    return_full_text: false 
+                } 
             })
         });
 
         const info = await response.json();
 
         if (response.status === 503) {
-            updateMessage(loadingId, "Модель просыпается... Подожди 30 секунд.");
+            updateMessage(loadingId, "Сайга просыпается... Подожди 30 секунд и напиши ещё раз.");
         } else if (response.status !== 200) {
-            updateMessage(loadingId, "Ошибка доступа. Проверь данные LDFLDF.");
+            updateMessage(loadingId, "Ошибка: " + (info.error || "проверь соединение"));
         } else {
-            // HF иногда возвращает массив, иногда объект
-            let result = "";
+            // Проверка: ответ может быть массивом или объектом
+            let answer = "";
             if (Array.isArray(info)) {
-                result = info[0].generated_text;
+                answer = info[0].generated_text;
             } else {
-                result = info.generated_text;
+                answer = info.generated_text;
             }
-            
-            const cleanText = result.replace(msg_data, "").trim();
-            updateMessage(loadingId, cleanText);
+            updateMessage(loadingId, answer.trim());
         }
-        scrollToBottom();
     } catch (e) {
-        updateMessage(loadingId, "Нет связи с сервером.");
+        console.error(e);
+        updateMessage(loadingId, "Произошла ошибка в коде или сети.");
     }
+    scrollToBottom();
 }
 
 function addMessage(text, side) {
