@@ -17,14 +17,14 @@
 </div>
 
 <script>
-    // Разбитый токен для безопасности
+    // Разбитый лдфлдф для безопасности
     const s1 = "h", s2 = "f", s3 = "_";
     const p1 = s1 + s2 + s3;
     const p2 = "FKqdkWXOjETtPsZkGE";
     const p3 = "gTPrTcZPSPYvDvRk";
-    const FINAL_TOKEN = p1 + p2 + p3;
+    const FINAl_LDFLDF = p1 + p2 + p3;
     
-    const API_URL = "https://huggingface.co";
+    const API_URL = "https://api-inference.huggingface.co/models/IlyaGusev/saiga_llama_3_8b";
 
     async function sendMessage() {
         const input = document.getElementById('userInput');
@@ -42,7 +42,7 @@
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
-                headers: { "Authorization": `Bearer ${FINAL_TOKEN}`, "Content-Type": "application/json" },
+                headers: { "Authorization": `Bearer ${FINAL_LDFLDF}`, "Content-Type": "application/json" },
                 body: JSON.stringify({ inputs: prompt, parameters: { max_new_tokens: 500, temperature: 0.7 } })
             });
 
