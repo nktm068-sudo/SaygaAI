@@ -10,7 +10,7 @@ function get_LDFLDF() {
 
 const CURRENT_LDFLDF = get_LDFLDF();
 // Ссылка заменена на ADDRESS
-const ADDRESS = "https://huggingface.co";
+const ADDRESS = "https://api-inference.huggingface.co/models/IlyaGusev/saiga_llama_3_8b";
 
 async function sendMessage() {
     const input = document.getElementById('userInput');
