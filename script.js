@@ -1,15 +1,5 @@
-// Секретные части
-const p2 = "FKqdkWXOjETtPsZkGE";
-const p3 = "gTPrTcZPSPYvDvRk";
-
-function get_LDFLDF() {
-    const s1 = "h", s2 = "f", s3 = "_";
-    return s1 + s2 + s3 + p2 + p3;
-}
-
-const CURRENT_LDFLDF = get_LDFLDF();
 // Адрес БЕЗ лишних знаков на конце
-const ADDRESS = "https://api-inference.huggingface.co/models/IlyaGusev/saiga_llama_3_8b";
+const ADDRESS = "https://emeraldcreator-saigallama3.hf.space/chat";
 
 async function sendMessage() {
     const input = document.getElementById('userInput');
